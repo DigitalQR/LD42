@@ -597,6 +597,8 @@ MonoBehaviour:
   HeadObject: {fileID: 1628831324414968}
   LeftHand: {fileID: 114790093927986330}
   RightHand: {fileID: 114395797837513550}
+  JumpThreshold: 0.025
+  JumpDurationThreshold: 0.5
 --- !u!114 &114790093927986330
 MonoBehaviour:
   m_ObjectHideFlags: 1

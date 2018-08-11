@@ -95,6 +95,7 @@ public class LevelController : MonoBehaviour
 					obj.SetActive(true);
 
 			m_ActiveSceneName = null;
+			SpawnPlayer();
 		}
 		else if (scene != null)
 			StartCoroutine(LoadLevel(scene));

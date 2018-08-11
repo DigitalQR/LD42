@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class RingController : MonoBehaviour
 {
+	[Header("Radius")]
 	[SerializeField]
 	private float StartRadius = 20.0f;
 	[SerializeField]
@@ -12,8 +13,17 @@ public class RingController : MonoBehaviour
 	[SerializeField]
 	private bool ScaleWithRadius = true;
 
+	[Header("Pass Settings")]
+	[SerializeField]
+	private float PassRadius = 2.5f;
+
 	[SerializeField]
 	private string NextLevel = "None";
+
+	[SerializeField]
+	private GameObject NonPassedMesh;
+	[SerializeField]
+	private GameObject PassedMesh;
 
 	private bool m_IsActive = true;
 	private float m_Radius;
@@ -27,6 +37,15 @@ public class RingController : MonoBehaviour
 		m_StartScale = transform.localScale;
 
 		LevelController.Main.SpawnPlayer();
+		PlayerController.Main.PlayerJumped += OnPlayerJump;
+
+		NonPassedMesh.SetActive(true);
+		PassedMesh.SetActive(true);
+	}
+
+	void OnDestroy()
+	{
+		PlayerController.Main.PlayerJumped -= OnPlayerJump;
 	}
 
 	private float Radius
@@ -39,19 +58,26 @@ public class RingController : MonoBehaviour
 		get { return m_Radius / StartRadius; }
 	}
 
+	public bool HasPassed
+	{
+		get { return m_Radius <= PassRadius; }
+	}
+
 	void Update()
 	{
 		if (m_IsActive)
 		{
 			m_Radius -= RingReducitonRate * Time.deltaTime;
-
-			// TODO - Notify
+			
 			if (m_Radius < 0.0f)
 			{
 				m_Radius = 0.0f;
 				m_IsActive = false;
-				LevelController.Main.SwitchScene(NextLevel);
+				// TODO - Notfiy player crushed
 			}
+
+			NonPassedMesh.SetActive(!HasPassed);
+			PassedMesh.SetActive(HasPassed);
 
 			if (ScaleWithRadius)
 				transform.localScale = new Vector3(m_StartScale.x * NormalisedRadius, m_StartScale.y, m_StartScale.z * NormalisedRadius);
@@ -83,5 +109,11 @@ public class RingController : MonoBehaviour
 			if (interactor != null && !interactor.IsInteractable)
 				interactor.SignalInteraction();
 		}
+	}
+
+	private void OnPlayerJump(object sender, System.EventArgs e)
+	{
+		if (HasPassed)
+			LevelController.Main.SwitchScene(NextLevel);
 	}
 }
