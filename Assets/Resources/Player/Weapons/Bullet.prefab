@@ -95,9 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d82597ced765297438838d992575bebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 50
+  Speed: 75
   LifeLength: 5
-  AppliedForce: 50
+  AppliedForce: 15
 --- !u!135 &135593656734859334
 SphereCollider:
   m_ObjectHideFlags: 1

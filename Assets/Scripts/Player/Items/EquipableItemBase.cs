@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public abstract class EquipableItemBase : MonoBehaviour, IEquipableItem
+public class EquipableItemBase : MonoBehaviour, IEquipableItem
 {
 	[SerializeField]
 	private Quaternion EquipRotation = Quaternion.AngleAxis(-45.0f, Vector3.left);
+	[SerializeField]
+	private bool DisableCollision = true;
 
 	private Rigidbody m_Body;
 	private PlayerHand m_AttachedHand;
@@ -32,8 +34,14 @@ public abstract class EquipableItemBase : MonoBehaviour, IEquipableItem
 		get { return m_AttachedHand; }
 	}
 
-	public abstract void OnPrimaryButton(bool isPressed);
+	public virtual void OnPrimaryButton(bool isPressed)
+	{
+	}
 
+	public bool IsCurrentlyEquiped()
+	{
+		return AttachedHand != null;
+	}
 
 	public virtual void OnDrop()
 	{
@@ -54,7 +62,7 @@ public abstract class EquipableItemBase : MonoBehaviour, IEquipableItem
 		transform.localRotation = EquipRotation;
 		transform.localPosition = Vector3.zero;
 
-		Body.detectCollisions = false;
+		Body.detectCollisions = !DisableCollision;
 		Body.isKinematic = true;
 	}
 

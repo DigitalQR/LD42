@@ -4,6 +4,7 @@
 	{
 		_MainTex ("Main", 2D) = "white" {}
 		_MaskTex ("Mask", 2D) = "white" {}
+		_EmissionColour("Emission", Color) = (0,0,0)
 		
 		_MainDirection("Main Direction", Vector) = (0,1,0)
 		_MaskDirection("Mask Direction", Vector) = (0,1,0)
@@ -43,6 +44,7 @@
 			float4 _MainTex_ST;
 			float2 _MainDirection;
 			float2 _MaskDirection;
+			float3 _EmissionColour;
 			
 			v2f vert (appdata v)
 			{
@@ -58,7 +60,7 @@
 				// sample the texture
 				fixed4 col = tex2D(_MainTex, i.uv + _Time.y * _MainDirection.xy);
 				col *= tex2D(_MaskTex, i.uv + _Time.y * _MaskDirection.xy);
-
+				col.rgb *= float3(1,1,1) + _EmissionColour.rgb; 
 
 				// apply fog
 				UNITY_APPLY_FOG(i.fogCoord, col);

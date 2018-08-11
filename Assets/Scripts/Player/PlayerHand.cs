@@ -96,7 +96,7 @@ public class PlayerHand : MonoBehaviour
 		if (other.gameObject.CompareTag("Pickup"))
 		{
 			IEquipableItem item = other.gameObject.GetComponent<IEquipableItem>();
-			if (item != null)
+			if (item != null && !item.IsCurrentlyEquiped())
 				CurrentPrompt = item;
 		}
 	}

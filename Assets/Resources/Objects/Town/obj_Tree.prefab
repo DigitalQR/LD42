@@ -118,8 +118,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1332434611302164}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 7.88}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.654, y: -1.923, z: 2.131}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4900253571878254}
@@ -182,7 +182,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100002, guid: 931bb4091cc1c604998f9427de196b40, type: 3}
+  - {fileID: 2100000, guid: ccef1b772f0b32e47989ac65693ddebc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -216,7 +216,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100002, guid: 931bb4091cc1c604998f9427de196b40, type: 3}
+  - {fileID: 2100000, guid: ccef1b772f0b32e47989ac65693ddebc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -250,7 +250,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100002, guid: 931bb4091cc1c604998f9427de196b40, type: 3}
+  - {fileID: 2100000, guid: ccef1b772f0b32e47989ac65693ddebc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -284,7 +284,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 931bb4091cc1c604998f9427de196b40, type: 3}
+  - {fileID: 2100000, guid: 058a39b91a4507748a2371f4041aa808, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -387,11 +387,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  InitialisingOffset: {x: 0, y: 5, z: 0}
-  InitalisationDuration: 6
+  InitialisingOffset: {x: 0, y: 3, z: 0}
+  InitalisationDuration: 3
   Acceleration: 5
   MaxSpeed: 50
-  DistanceCutOff: 5
+  DistanceCutOff: 4
 --- !u!136 &136147999465566076
 CapsuleCollider:
   m_ObjectHideFlags: 1

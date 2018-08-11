@@ -5,6 +5,8 @@ using UnityEngine;
 
 public interface IEquipableItem
 {
+	bool IsCurrentlyEquiped();
+
 	void OnEquipPrompt(PlayerHand hand, bool isOpen);
 
 	void OnEquip(PlayerHand hand);
