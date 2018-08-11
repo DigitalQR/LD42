@@ -36,11 +36,11 @@ public class FloatInteractionBehaviour : MonoBehaviour, IRingInteractableBehavio
 
 	void Start ()
 	{
-		// TODO - Get player head transform	
 		m_Body = GetComponent<Rigidbody>();
 		m_Body.Sleep();
 
 		m_InitialisationTarget = transform.position + InitialisingOffset;
+		Target = PlayerController.Main.HeaderPosition;
 	}
 
 	public Vector3 TargetLocation
