@@ -49,19 +49,19 @@ public class LevelController : MonoBehaviour
 	/// <summary>
 	/// Spawn a new player or move existing one to spawn point
 	/// </summary>
-	private void SpawnPlayer()
+	public void SpawnPlayer()
 	{
 		// Find spawn location
 		Vector3 spawnPoint = Vector3.zero;
 		foreach (GameObject spawn in GameObject.FindGameObjectsWithTag("Respawn"))
 		{
-			if (spawn.activeInHierarchy)
+			if (spawn.CompareTag("Respawn"))
 			{
 				spawnPoint = spawn.transform.position;
 				break;
 			}
 		}
-		
+
 		// Spawn in or move player
 		if (PlayerController.Main == null)
 		{
@@ -117,7 +117,6 @@ public class LevelController : MonoBehaviour
 		while (!operation.isDone)
 		{
 			m_ActiveSceneName = sceneName;
-			SpawnPlayer();
 			yield return null;
 		}
 	}

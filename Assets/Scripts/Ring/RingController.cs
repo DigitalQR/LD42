@@ -12,13 +12,21 @@ public class RingController : MonoBehaviour
 	[SerializeField]
 	private bool ScaleWithRadius = true;
 
+	[SerializeField]
+	private string NextLevel = "None";
+
+	private bool m_IsActive = true;
 	private float m_Radius;
 	private Vector3 m_StartScale;
+
+
 
 	void Start()
 	{
 		m_Radius = StartRadius;
 		m_StartScale = transform.localScale;
+
+		LevelController.Main.SpawnPlayer();
 	}
 
 	private float Radius
@@ -33,14 +41,21 @@ public class RingController : MonoBehaviour
 
 	void Update()
 	{
-		m_Radius -= RingReducitonRate * Time.deltaTime;
+		if (m_IsActive)
+		{
+			m_Radius -= RingReducitonRate * Time.deltaTime;
 
-		// TODO - Notify
-		if (m_Radius < 0.0f)
-			m_Radius = 0.0f;
+			// TODO - Notify
+			if (m_Radius < 0.0f)
+			{
+				m_Radius = 0.0f;
+				m_IsActive = false;
+				LevelController.Main.SwitchScene(NextLevel);
+			}
 
-		if (ScaleWithRadius)
-			transform.localScale = new Vector3(m_StartScale.x * NormalisedRadius, m_StartScale.y, m_StartScale.z * NormalisedRadius);
+			if (ScaleWithRadius)
+				transform.localScale = new Vector3(m_StartScale.x * NormalisedRadius, m_StartScale.y, m_StartScale.z * NormalisedRadius);
+		}
 	}
 
 	private void OnDrawGizmos()
