@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestInteraction : MonoBehaviour, IInteractableBehaviour
+public class TestInteraction : MonoBehaviour, IRingInteractableBehaviour
 {
-	public void OnInteraction()
+	public void OnRingInteraction()
 	{
 		Destroy(gameObject);
 	}

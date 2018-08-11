@@ -64,7 +64,7 @@ public class RingController : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag("Interactable"))
 		{
-			InteractableObject interactor = other.gameObject.GetComponent<InteractableObject>();
+			RingInteractable interactor = other.gameObject.GetComponent<RingInteractable>();
 			if (interactor != null && !interactor.IsInteractable)
 				interactor.SignalInteraction();
 		}

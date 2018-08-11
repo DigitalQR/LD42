@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableObject : MonoBehaviour
+public class RingInteractable : MonoBehaviour
 {
-	private IInteractableBehaviour[] m_Interactions;
+	private IRingInteractableBehaviour[] m_Interactions;
 	private bool m_IsInteractable = false;
 
 
 	void Start()
 	{
-		m_Interactions = GetComponents<IInteractableBehaviour>();
+		m_Interactions = GetComponents<IRingInteractableBehaviour>();
 	}
 
 	public bool IsInteractable
@@ -22,8 +22,8 @@ public class InteractableObject : MonoBehaviour
 	{
 		if (!m_IsInteractable)
 		{
-			foreach (IInteractableBehaviour behaviour in m_Interactions)
-				behaviour.OnInteraction();
+			foreach (IRingInteractableBehaviour behaviour in m_Interactions)
+				behaviour.OnRingInteraction();
 			m_IsInteractable = true;
 		}
 	}
