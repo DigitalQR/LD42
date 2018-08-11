@@ -142,13 +142,13 @@ public class PlayerHand : MonoBehaviour
 		{
 			m_InUI = true;
 			selectable.Select();
-			//m_LaserPointer.pointer.SetActive(true);
+			m_LaserPointer.pointer.SetActive(true);
 		}
 	}
 
 	private void OnLaserPointerOut(object sender, PointerEventArgs e)
 	{
-		//m_LaserPointer.pointer.SetActive(false);
+		m_LaserPointer.pointer.SetActive(false);
 		m_InUI = false;
 
 		EventSystem.current.SetSelectedGameObject(null);
