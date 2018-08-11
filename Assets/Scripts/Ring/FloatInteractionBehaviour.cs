@@ -20,14 +20,15 @@ public class FloatInteractionBehaviour : MonoBehaviour, IRingInteractableBehavio
 
 	[SerializeField]
 	private float Acceleration = 10.0f;
-	//[SerializeField]
-	//private float MaxSpeed = 100.0f;
+	[SerializeField]
+	private float MaxSpeed = 100.0f;
 	[SerializeField]
 	private float DistanceCutOff = 10.0f;
 
 
 	private Rigidbody m_Body;
 	private bool m_IsTrackingTarget;
+	private Vector3 m_CurrentAcceleration;
 
 	private Vector3 m_InitialisationTarget;
 	private float m_InteractionTimer;
@@ -71,7 +72,7 @@ public class FloatInteractionBehaviour : MonoBehaviour, IRingInteractableBehavio
 			// Accellerate towards target but only if withing acceptable range
 			if (IsInitalising || targetOffset.sqrMagnitude >= DistanceCutOff * DistanceCutOff)
 			{
-				m_Body.velocity += targetOffset.normalized * Acceleration * Time.deltaTime;
+				m_CurrentAcceleration = targetOffset.normalized * Acceleration;
 				//m_Body.velocity += targetOffset.normalized * Acceleration * m_KnownMaxSpeed * 0.5f * Time.deltaTime;
 
 				//float speed = m_Body.velocity.magnitude;
@@ -80,6 +81,13 @@ public class FloatInteractionBehaviour : MonoBehaviour, IRingInteractableBehavio
 
 				//m_Body.velocity = m_Body.velocity.normalized * m_KnownMaxSpeed;
 			}
+
+
+			m_Body.velocity += m_CurrentAcceleration * Time.deltaTime;
+
+			// Clamp speed
+			if (m_Body.velocity.sqrMagnitude > MaxSpeed * MaxSpeed)
+				m_Body.velocity = m_Body.velocity.normalized * MaxSpeed;
 		}
 	}
 
