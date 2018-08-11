@@ -718,7 +718,7 @@ PlayerSettings:
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
   cloudProjectId: 7bacf3dd-cc4f-485a-a265-2f88bbe9a4c4
-  projectName: 
+  projectName: LD-OutOfSpace
   organizationId: digitalqr
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
