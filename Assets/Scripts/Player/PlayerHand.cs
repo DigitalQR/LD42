@@ -1,17 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-[RequireComponent(typeof(SteamVR_TrackedObject)), RequireComponent(typeof(SteamVR_TrackedController))]
+[RequireComponent(typeof(SteamVR_LaserPointer)), RequireComponent(typeof(SteamVR_TrackedController))]
 public class PlayerHand : MonoBehaviour
 {
 	private SteamVR_TrackedController m_Controller;
+	private SteamVR_LaserPointer m_LaserPointer;
 
+	private bool m_InUI = false;
 	private IEquipableItem m_CurrentItem;
 	private IEquipableItem m_CurrentPrompt;
 
 	void Start ()
 	{
+		m_LaserPointer = GetComponent<SteamVR_LaserPointer>();
+		m_LaserPointer.PointerIn += OnLaserPointerIn;
+		m_LaserPointer.PointerOut += OnLaserPointerOut;
+
 		SteamVRController.TriggerClicked += OnTriggerClicked;
 		SteamVRController.TriggerUnclicked += OnTriggerUnclicked;
 		SteamVRController.Gripped += OnGripped;
@@ -65,14 +73,29 @@ public class PlayerHand : MonoBehaviour
 
 	private void OnTriggerClicked(object sender, ClickedEventArgs e)
 	{
-		if (CurrentItem != null)
-			CurrentItem.OnPrimaryButton(true);
+		if (m_InUI)
+		{
+			if(EventSystem.current.currentSelectedGameObject != null)
+				ExecuteEvents.Execute(EventSystem.current.currentSelectedGameObject, new PointerEventData(EventSystem.current), ExecuteEvents.submitHandler);
+		}
+		else
+		{
+			if (CurrentItem != null)
+				CurrentItem.OnPrimaryButton(true);
+		}
 	}
 
 	private void OnTriggerUnclicked(object sender, ClickedEventArgs e)
 	{
-		if (CurrentItem != null)
-			CurrentItem.OnPrimaryButton(false);
+		if (m_InUI)
+		{
+
+		}
+		else
+		{
+			if (CurrentItem != null)
+				CurrentItem.OnPrimaryButton(false);
+		}
 	}
 
 
@@ -109,6 +132,26 @@ public class PlayerHand : MonoBehaviour
 			if (item != null && CurrentPrompt == item)
 				CurrentPrompt = null;
 		}
+	}
+
+	private void OnLaserPointerIn(object sender, PointerEventArgs e)
+	{
+		Selectable selectable = e.target.GetComponent<Selectable>();
+
+		if (selectable != null)
+		{
+			m_InUI = true;
+			selectable.Select();
+			//m_LaserPointer.pointer.SetActive(true);
+		}
+	}
+
+	private void OnLaserPointerOut(object sender, PointerEventArgs e)
+	{
+		//m_LaserPointer.pointer.SetActive(false);
+		m_InUI = false;
+
+		EventSystem.current.SetSelectedGameObject(null);
 	}
 
 }

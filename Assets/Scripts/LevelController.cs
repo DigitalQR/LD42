@@ -1,0 +1,124 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class LevelController : MonoBehaviour
+{
+
+	/// <summary>
+	/// LevelController (single instance)
+	/// </summary>
+	public static LevelController Main { get; private set; }
+
+	[SerializeField]
+	private PlayerController PlayerPrefab;
+	[SerializeField]
+	private string[] AlwaysActiveObjectNames;
+
+	private Scene m_MainScene;
+	private string m_ActiveSceneName;
+
+
+	void Start ()
+	{
+		if (Main != this)
+		{
+			if (Main != null)
+				throw new UnityException("Multiple LevelController active");
+			else
+			{
+				Main = this;
+				Debug.Log("LevelController found");
+			}
+		}
+
+		DontDestroyOnLoad(gameObject);
+		m_MainScene = SceneManager.GetSceneAt(0);
+		SpawnPlayer();
+	}
+
+	private bool IsAlwaysActive(GameObject obj)
+	{
+		foreach (string name in AlwaysActiveObjectNames)
+			if (obj.name == name)
+				return true;
+		return false;
+	}
+
+	/// <summary>
+	/// Spawn a new player or move existing one to spawn point
+	/// </summary>
+	private void SpawnPlayer()
+	{
+		// Find spawn location
+		Vector3 spawnPoint = Vector3.zero;
+		foreach (GameObject spawn in GameObject.FindGameObjectsWithTag("Respawn"))
+		{
+			if (spawn.activeInHierarchy)
+			{
+				spawnPoint = spawn.transform.position;
+				break;
+			}
+		}
+		
+		// Spawn in or move player
+		if (PlayerController.Main == null)
+		{
+			PlayerController player = Instantiate(PlayerPrefab, spawnPoint, Quaternion.identity);
+			DontDestroyOnLoad(player.gameObject);
+		}
+		else
+			PlayerController.Main.transform.position = spawnPoint;
+	}
+
+	public void SwitchScene(string scene)
+	{
+		// Unload old scene
+		if (m_ActiveSceneName == null)
+		{
+			// Just disabled entry scene (It should never be unloaded)
+			foreach (GameObject obj in m_MainScene.GetRootGameObjects())
+				if(!IsAlwaysActive(obj))
+					obj.SetActive(false);
+		}
+		else if (m_ActiveSceneName != null)
+			StartCoroutine(UnloadLevel(m_ActiveSceneName));
+
+
+		// Load new scene
+		if (scene == "Entry")
+		{
+			// Just re-enabled entry scene (It should never be unloaded)
+			foreach (GameObject obj in m_MainScene.GetRootGameObjects())
+				if (!IsAlwaysActive(obj))
+					obj.SetActive(true);
+
+			m_ActiveSceneName = null;
+		}
+		else if (scene != null)
+			StartCoroutine(LoadLevel(scene));
+	}
+
+	private IEnumerator UnloadLevel(string sceneName)
+	{
+		AsyncOperation operation = SceneManager.UnloadSceneAsync(sceneName);
+
+		while (!operation.isDone)
+		{
+			yield return null;
+		}
+	}
+
+	private IEnumerator LoadLevel(string sceneName)
+	{
+		AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+
+		while (!operation.isDone)
+		{
+			m_ActiveSceneName = sceneName;
+			SpawnPlayer();
+			yield return null;
+		}
+	}
+}
