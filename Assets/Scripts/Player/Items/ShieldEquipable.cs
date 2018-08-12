@@ -24,7 +24,7 @@ public class ShieldEquipable : EquipableItemBase
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		if (collision.gameObject.CompareTag("Interactable"))
+		if (m_ShouldImpact && collision.gameObject.CompareTag("Interactable"))
 		{
 			Rigidbody body = collision.gameObject.GetComponent<Rigidbody>();
 			if (body != null)

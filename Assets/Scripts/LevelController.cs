@@ -16,6 +16,9 @@ public class LevelController : MonoBehaviour
 	[SerializeField]
 	private string[] AlwaysActiveObjectNames;
 
+	[SerializeField]
+	private string GameOverScene = "Entry";
+
 	private Scene m_MainScene;
 	private string m_ActiveSceneName;
 
@@ -76,6 +79,7 @@ public class LevelController : MonoBehaviour
 		if (PlayerController.Main == null)
 		{
 			PlayerController player = Instantiate(PlayerPrefab, spawnPoint, Quaternion.identity);
+			player.PlayerHealthChange += OnPlayerHealthChange;
 			DontDestroyOnLoad(player.gameObject);
 		}
 		else
@@ -135,5 +139,12 @@ public class LevelController : MonoBehaviour
 	public void QuitGame()
 	{
 		Application.Quit();
+	}
+
+	private void OnPlayerHealthChange(object sender, System.EventArgs e)
+	{
+		PlayerController player = sender as PlayerController;
+		if (player.Health == 0)
+			SwitchScene(GameOverScene);
 	}
 }

@@ -109,7 +109,9 @@ GameObject:
   - component: {fileID: 20277566234096628}
   - component: {fileID: 124689783179636890}
   - component: {fileID: 114202819013583170}
-  - component: {fileID: 114295143644310484}
+  - component: {fileID: 135301071047555362}
+  - component: {fileID: 114081298412837452}
+  - component: {fileID: 114185232633535152}
   m_Layer: 0
   m_Name: Camera (eye)
   m_TagString: MainCamera
@@ -465,7 +467,7 @@ MonoBehaviour:
   verbose: 0
   createComponents: 1
   updateDynamically: 1
---- !u!114 &114202819013583170
+--- !u!114 &114081298412837452
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -473,11 +475,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1601113382709744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b611e9d80ae48a4bbc4b0c603d6a5f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: 3e12cee82574b1c45807c4d7f56898a3, type: 2}
---- !u!114 &114295143644310484
+--- !u!114 &114185232633535152
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -491,6 +492,18 @@ MonoBehaviour:
   _head: {fileID: 4697811494678632}
   _ears: {fileID: 4353435200548786}
   wireframe: 0
+--- !u!114 &114202819013583170
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1601113382709744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 3e12cee82574b1c45807c4d7f56898a3, type: 2}
 --- !u!114 &114304682529776166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -594,11 +607,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 071ae68403aa4164a9b987a88fdb287c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HeadObject: {fileID: 1601113382709744}
+  Head: {fileID: 114081298412837452}
   LeftHand: {fileID: 114790093927986330}
   RightHand: {fileID: 114395797837513550}
   JumpThreshold: 0.025
   JumpDurationThreshold: 0.5
+  MaxHealth: 6
+  RegenRate: 7
+  ExplosiveForce: 20
+  ExplosiveRadius: 7
 --- !u!114 &114790093927986330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -688,4 +705,16 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &135301071047555362
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1601113382709744}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
   m_Center: {x: 0, y: 0, z: 0}

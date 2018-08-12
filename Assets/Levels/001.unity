@@ -4229,15 +4229,15 @@ Transform:
   m_PrefabParentObject: {fileID: 400008, guid: 931bb4091cc1c604998f9427de196b40, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 970010302}
-  m_LocalRotation: {x: 0.560459, y: -0.07674536, z: -0.54115176, w: -0.6222143}
-  m_LocalPosition: {x: 1.635, y: -0.233, z: -12.015}
+  m_LocalRotation: {x: 0.40302962, y: 0.025683537, z: -0.8094486, w: -0.42626348}
+  m_LocalPosition: {x: 1.203, y: -0.46, z: -13.37}
   m_LocalScale: {x: 1.4955097, y: 1.4955105, z: 1.4955102}
   m_Children: []
   m_Father: {fileID: 861169321}
   m_RootOrder: 81
-  m_LocalEulerAnglesHint: {x: -51.308002, y: -54.840004, z: -249.989}
---- !u!65 &970010304
-BoxCollider:
+  m_LocalEulerAnglesHint: {x: -17.579, y: -45.023003, z: -228.20999}
+--- !u!64 &970010304
+MeshCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -4245,9 +4245,11 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.802859, y: 0.926712, z: 2.0616112}
-  m_Center: {x: -0.00015184315, y: -0.0000007327002, z: 0.69816935}
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300002, guid: 931bb4091cc1c604998f9427de196b40, type: 3}
 --- !u!95 &970010305
 Animator:
   serializedVersion: 3
@@ -8482,8 +8484,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
---- !u!65 &1830716521
-BoxCollider:
+--- !u!64 &1830716521
+MeshCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -8491,9 +8493,11 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.802859, y: 0.926712, z: 2.0616112}
-  m_Center: {x: -0.00015184315, y: -0.0000007327002, z: 0.69816935}
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300002, guid: 931bb4091cc1c604998f9427de196b40, type: 3}
 --- !u!95 &1830716522
 Animator:
   serializedVersion: 3
@@ -9370,8 +9374,8 @@ Transform:
   m_Father: {fileID: 861169321}
   m_RootOrder: 89
   m_LocalEulerAnglesHint: {x: -75.898, y: 81.12, z: -269.19}
---- !u!65 &2014026401
-BoxCollider:
+--- !u!64 &2014026401
+MeshCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -9379,9 +9383,11 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.802859, y: 0.926712, z: 2.0616112}
-  m_Center: {x: -0.00015184315, y: -0.0000007327002, z: 0.69816935}
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300002, guid: 931bb4091cc1c604998f9427de196b40, type: 3}
 --- !u!95 &2014026402
 Animator:
   serializedVersion: 3

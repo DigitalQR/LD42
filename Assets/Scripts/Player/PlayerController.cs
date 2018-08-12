@@ -9,15 +9,18 @@ public class PlayerController : MonoBehaviour
 	/// </summary>
 	public static PlayerController Main { get; private set; }
 
+
+	[Header("Tracked Parts")]
 	[SerializeField]
-	private GameObject HeadObject;
+	private PlayerHead Head;
 
 	[SerializeField]
 	private PlayerHand LeftHand;
 	[SerializeField]
 	private PlayerHand RightHand;
+	
 
-
+	[Header("Jumping")]
 	[SerializeField]
 	private float JumpThreshold = 2.0f;
 	[SerializeField]
@@ -27,7 +30,24 @@ public class PlayerController : MonoBehaviour
 	private float m_JumpTimer;
 	private bool m_HasAscended;
 
+
+	[Header("Health")]
+	[SerializeField]
+	private int MaxHealth = 6;
+	[SerializeField]
+	private float RegenRate = 4.0f;
+
+	[SerializeField]
+	private float ExplosiveForce = 10.0f;
+	[SerializeField]
+	private float ExplosiveRadius = 5.0f;
+
+	private int m_Health;
+	private float m_RegenTimer;
+
+
 	public event System.EventHandler PlayerJumped;
+	public event System.EventHandler PlayerHealthChange;
 
 	void Awake()
 	{
@@ -45,6 +65,9 @@ public class PlayerController : MonoBehaviour
 
 	void Start ()
 	{
+		Head.Player = this;
+		m_Health = MaxHealth;
+
 		LeftHand.SteamVRController.MenuButtonClicked += OnMenuClicked;
 		RightHand.SteamVRController.MenuButtonClicked += OnMenuClicked;
 
@@ -53,12 +76,40 @@ public class PlayerController : MonoBehaviour
 	
 	public Transform HeadPosition
 	{
-		get { return HeadObject.transform; }
+		get { return Head.transform; }
+	}
+
+	public int Health
+	{
+		get { return m_Health; }
+		set
+		{
+			int oldHealth = m_Health;
+			m_Health = Mathf.Clamp(value, 0, MaxHealth);
+			if(oldHealth != m_Health)
+				PlayerHealthChange(this, new System.EventArgs());
+		}
+	}
+
+	public int MaximumHealth
+	{
+		get { return MaxHealth; }
 	}
 
 
 	void Update ()
 	{
+		// Regen health
+		if (m_Health < MaxHealth)
+		{
+			m_RegenTimer -= Time.deltaTime;
+			if (m_RegenTimer < 0.0f)
+			{
+				Health++;
+				m_RegenTimer = RegenRate;
+			}
+		}
+
 		DetectJump();
 	}
 
@@ -96,5 +147,18 @@ public class PlayerController : MonoBehaviour
 		}
 
 		m_PreviousHeadLocation = currentLocation;
+	}
+
+	public void OnHitByDamage(GameObject obj)
+	{
+		foreach (Rigidbody body in GameObject.FindObjectsOfType<Rigidbody>())
+			if (body.gameObject.CompareTag("Interactable"))
+			{
+				Vector3 diff = body.transform.position - Head.transform.position;
+				if(diff.sqrMagnitude <= ExplosiveRadius * ExplosiveRadius)
+					body.velocity = diff.normalized * ExplosiveForce;
+			}
+		
+		Health--;
 	}
 }
