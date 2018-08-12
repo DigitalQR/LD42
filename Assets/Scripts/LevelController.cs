@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
-
 	/// <summary>
 	/// LevelController (single instance)
 	/// </summary>
@@ -154,6 +153,12 @@ public class LevelController : MonoBehaviour
 	{
 		PlayerController player = sender as PlayerController;
 		if (player.Health == 0)
+		{
 			SwitchScene(GameOverScene);
+			player.Health = player.MaximumHealth;
+
+			PopupMessage msg = new PopupMessage("Game Over", "Need some more space?", 5.0f);
+			PopupController.Main.PushImmediate(msg);
+		}
 	}
 }

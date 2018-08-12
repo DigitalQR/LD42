@@ -7,10 +7,7 @@ using UnityEngine;
 public class FloatInteractionBehaviour : MonoBehaviour, IRingInteractableBehaviour
 {
 	[Header("Targeting")]
-
-	[SerializeField]
-	private Transform Target;
-
+	
 	[SerializeField]
 	private Vector3 InitialisingOffset = Vector3.up * 3.0f;
 	[SerializeField]
@@ -43,7 +40,6 @@ public class FloatInteractionBehaviour : MonoBehaviour, IRingInteractableBehavio
 		m_Body.isKinematic = true;
 
 		m_InitialisationTarget = transform.position + InitialisingOffset;
-		Target = PlayerController.Main.HeadPosition;
 	}
 
 	public Vector3 TargetLocation
@@ -53,7 +49,7 @@ public class FloatInteractionBehaviour : MonoBehaviour, IRingInteractableBehavio
 			if (IsInitalising)
 				return m_InitialisationTarget;
 			else
-				return Target != null ? Target.position : Vector3.zero;
+				return PlayerController.Main.HeadPosition != null ? PlayerController.Main.HeadPosition.position : Vector3.zero;
 		}
 	}
 

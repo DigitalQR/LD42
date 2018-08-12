@@ -26,6 +26,7 @@ public class RingController : MonoBehaviour
 	private GameObject PassedMesh;
 
 	private bool m_IsActive = true;
+	private bool m_WasPassed = false;
 	private float m_Radius;
 
 
@@ -41,7 +42,7 @@ public class RingController : MonoBehaviour
 		PassedMesh.SetActive(true);
 
 		if (ScaleWithRadius)
-			transform.localScale = new Vector3(m_Radius, 80.0f, m_Radius);
+			transform.localScale = new Vector3(m_Radius, 1.0f, m_Radius);
 	}
 
 	void OnDestroy()
@@ -74,14 +75,20 @@ public class RingController : MonoBehaviour
 			{
 				m_Radius = 0.0f;
 				m_IsActive = false;
-				// TODO - Notfiy player crushed
+			}
+			
+			if (!m_WasPassed && HasPassed)
+			{
+				PopupMessage msg = new PopupMessage("JUMP!", "", 5.0f);
+				PopupController.Main.PushImmediate(msg);
 			}
 
 			NonPassedMesh.SetActive(!HasPassed);
 			PassedMesh.SetActive(HasPassed);
+			m_WasPassed = HasPassed;
 
 			if (ScaleWithRadius)
-				transform.localScale = new Vector3(m_Radius, 80.0f, m_Radius);
+				transform.localScale = new Vector3(m_Radius, 1.0f, m_Radius);
 		}
 	}
 

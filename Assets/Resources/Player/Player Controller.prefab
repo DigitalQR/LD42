@@ -613,7 +613,7 @@ MonoBehaviour:
   JumpThreshold: 0.025
   JumpDurationThreshold: 0.75
   MaxHealth: 6
-  RegenRate: 7
+  RegenRate: 5
   ExplosiveForce: 20
   ExplosiveRadius: 7
 --- !u!114 &114790093927986330

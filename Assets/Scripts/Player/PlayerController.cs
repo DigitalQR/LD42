@@ -160,5 +160,6 @@ public class PlayerController : MonoBehaviour
 			}
 		
 		Health--;
+		m_RegenTimer = RegenRate;
 	}
 }
