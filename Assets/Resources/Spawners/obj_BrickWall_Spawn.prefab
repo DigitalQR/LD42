@@ -1255,7 +1255,7 @@ GameObject:
   - component: {fileID: 4231243137170086}
   - component: {fileID: 114443365197771106}
   m_Layer: 0
-  m_Name: ob_BrickWall_Spawn
+  m_Name: obj_BrickWall_Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

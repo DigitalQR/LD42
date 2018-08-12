@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 65045563003466756}
   - component: {fileID: 54018714082407126}
   - component: {fileID: 114742266897724474}
+  - component: {fileID: 114279712345810692}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Pickup
@@ -54,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1340364357259828}
   m_LocalRotation: {x: -0.77248967, y: -0, z: -0, w: -0.6350274}
-  m_LocalPosition: {x: -0.768, y: 0.4447294, z: -2.6993046}
+  m_LocalPosition: {x: -1.216574, y: 0.483, z: -0.502}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4667618444769094}
@@ -160,6 +161,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114279712345810692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1340364357259828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a157a35344dee047873b73455397bbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PitchMinRange: 0.7
+  PitchMaxRange: 1.5
 --- !u!114 &114742266897724474
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,6 +187,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EquipEulerRotation: {x: 45, y: 0, z: 0}
   DisableCollision: 0
+  EquipSound: {fileID: 8300000, guid: 99fff9a0ac6ce59448e32a9dadd24ae9, type: 3}
+  DropSound: {fileID: 0}
+  ImpactSound: {fileID: 8300000, guid: 30c512b4e29afd743a50854feaed9fdb, type: 3}
   AppliedForce: 25
   VelocityTracker: {fileID: 0}
   VelocityFactor: 10

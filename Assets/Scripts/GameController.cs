@@ -69,12 +69,6 @@ public class GameController : MonoBehaviour
 		}
 		else
 			PlayerController.Main.transform.position = spawnPoint;
-
-
-		// Destroy all items
-		foreach (EquipableItemBase item in FindObjectsOfType<EquipableItemBase>())
-			if (!item.IsCurrentlyEquiped())
-				Destroy(item);
 	}
 
 	private void OnPlayerHealthChange(object sender, System.EventArgs e)

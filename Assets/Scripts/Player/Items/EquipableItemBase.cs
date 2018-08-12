@@ -3,20 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(SoundEmitter))]
 public class EquipableItemBase : MonoBehaviour, IEquipableItem
 {
+	[Header("Equip Settings")]
 	[SerializeField]
 	private Vector3 EquipEulerRotation = new Vector3(45.0f, 0.0f, 0.0f);
 	[SerializeField]
 	private bool DisableCollision = true;
 
+	[Header("Sound")]
+	[SerializeField]
+	private AudioClip EquipSound;
+	[SerializeField]
+	private AudioClip DropSound;
+
 	private Rigidbody m_Body;
 	private PlayerHand m_AttachedHand;
 
+	private SoundEmitter m_SoundEmitter;
+
 	protected virtual void Start()
 	{
-
+		m_SoundEmitter = GetComponent<SoundEmitter>();
 	}
 
 	public Rigidbody Body
@@ -32,6 +41,11 @@ public class EquipableItemBase : MonoBehaviour, IEquipableItem
 	public PlayerHand AttachedHand
 	{
 		get { return m_AttachedHand; }
+	}
+
+	public SoundEmitter SoundSource
+	{
+		get { return m_SoundEmitter; }
 	}
 
 	public virtual void OnPrimaryButton(bool isPressed)
@@ -52,6 +66,9 @@ public class EquipableItemBase : MonoBehaviour, IEquipableItem
 		Body.velocity = m_AttachedHand.Velocity;
 
 		m_AttachedHand = null;
+
+		if(DropSound != null)
+			m_SoundEmitter.PlaySound(DropSound);
 	}
 
 	public virtual void OnEquip(PlayerHand hand)
@@ -64,6 +81,9 @@ public class EquipableItemBase : MonoBehaviour, IEquipableItem
 
 		Body.detectCollisions = !DisableCollision;
 		Body.isKinematic = true;
+
+		if (EquipSound != null)
+			m_SoundEmitter.PlaySound(EquipSound);
 	}
 
 	public virtual void OnEquipPrompt(PlayerHand hand, bool isOpen)

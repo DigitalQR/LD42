@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SoundEmitter))]
 public class PlayerController : MonoBehaviour
 {
 	/// <summary>
@@ -45,6 +46,15 @@ public class PlayerController : MonoBehaviour
 	private int m_Health;
 	private float m_RegenTimer;
 
+	[Header("Audio")]
+	[SerializeField]
+	private AudioClip DamageSound;
+
+	[SerializeField]
+	private AudioClip TeleportSound;
+
+	private SoundEmitter m_SoundEmitter;
+
 
 	public event System.EventHandler PlayerJumped;
 	public event System.EventHandler PlayerHealthChange;
@@ -72,6 +82,7 @@ public class PlayerController : MonoBehaviour
 		RightHand.SteamVRController.MenuButtonClicked += OnMenuClicked;
 
 		m_PreviousHeadLocation = HeadPosition.position;
+		m_SoundEmitter = GetComponent<SoundEmitter>();
 	}
 	
 	public Transform HeadPosition
@@ -88,6 +99,8 @@ public class PlayerController : MonoBehaviour
 			m_Health = Mathf.Clamp(value, 0, MaxHealth);
 			if(oldHealth != m_Health)
 				PlayerHealthChange(this, new System.EventArgs());
+			if (m_Health < oldHealth)
+				m_SoundEmitter.PlaySound(DamageSound);
 		}
 	}
 
@@ -96,6 +109,15 @@ public class PlayerController : MonoBehaviour
 		get { return MaxHealth; }
 	}
 
+	public SoundEmitter SoundSource
+	{
+		get { return m_SoundEmitter; }
+	}
+
+	public AudioClip TeleportSoundEffect
+	{
+		get { return TeleportSound; }
+	}
 
 	void Update ()
 	{

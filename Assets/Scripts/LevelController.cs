@@ -88,6 +88,11 @@ public class LevelController : MonoBehaviour
 			foreach (GameObject obj in m_MainScene.GetRootGameObjects())
 				if(!IsAlwaysActive(obj))
 					obj.SetActive(false);
+
+			// Destroy all items
+			foreach (EquipableItemBase item in FindObjectsOfType<EquipableItemBase>())
+				if (!item.IsCurrentlyEquiped())
+					Destroy(item.gameObject);
 		}
 		else
 			StartCoroutine(UnloadLevel(m_ActiveSceneName));
@@ -114,6 +119,11 @@ public class LevelController : MonoBehaviour
 
 		while (!operation.isDone)
 		{
+			// Destroy all items
+			foreach (EquipableItemBase item in FindObjectsOfType<EquipableItemBase>())
+				if (!item.IsCurrentlyEquiped())
+					Destroy(item.gameObject);
+
 			yield return null;
 		}
 	}

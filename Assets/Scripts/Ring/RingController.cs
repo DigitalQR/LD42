@@ -122,6 +122,10 @@ public class RingController : MonoBehaviour
 	private void OnPlayerJump(object sender, System.EventArgs e)
 	{
 		if (HasPassed)
+		{
 			LevelController.Main.SwitchScene(NextLevel);
+			PlayerController player = sender as PlayerController;
+			player.SoundSource.PlaySound(player.TeleportSoundEffect);
+		}
 	}
 }

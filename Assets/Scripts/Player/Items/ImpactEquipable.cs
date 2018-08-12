@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class ImpactEquipable : EquipableItemBase
 {
+	[Header("Sound")]
+	[SerializeField]
+	private AudioClip ImpactSound;
+
+	[Header("Impacts")]
 	[SerializeField]
 	private float AppliedForce = 25.0f;
 
@@ -16,7 +21,7 @@ public class ImpactEquipable : EquipableItemBase
 	private bool m_ShouldImpact;
 	private Vector3 m_LastPosition;
 	private Vector3 m_Velocity;
-	
+
 
 	protected override void Start()
 	{
@@ -53,7 +58,11 @@ public class ImpactEquipable : EquipableItemBase
 		{
 			Rigidbody body = collision.gameObject.GetComponent<Rigidbody>();
 			if (body != null)
+			{
 				body.velocity = transform.forward * AppliedForce + m_Velocity * VelocityFactor;
+				SoundSource.PlaySound(ImpactSound);
+			}
+			
 		}
 	}
 }

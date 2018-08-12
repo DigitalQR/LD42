@@ -1887,6 +1887,7 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 114729131999992528, guid: b4958f37c6d7b4245a19a0b5e3b36eb9,
     type: 2}
   GameOverScene: Entry
+  RandomSpawnStartValue: 0.1
   RandomSpawnIncreaseRate: 0.1
 --- !u!114 &802801046
 MonoBehaviour:
@@ -1904,6 +1905,10 @@ MonoBehaviour:
   - UI (Persistant)
   RandomLevels:
   - Random_001
+  - Random_002
+  - Random_003
+  - Random_003b
+  - Random_004
 --- !u!4 &802801047
 Transform:
   m_ObjectHideFlags: 0

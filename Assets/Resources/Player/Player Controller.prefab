@@ -111,7 +111,8 @@ GameObject:
   - component: {fileID: 114202819013583170}
   - component: {fileID: 114081298412837452}
   - component: {fileID: 136256772175763470}
-  - component: {fileID: 114350996711277604}
+  - component: {fileID: 114143951398143852}
+  - component: {fileID: 114296098665357374}
   m_Layer: 0
   m_Name: Camera (eye)
   m_TagString: MainCamera
@@ -165,6 +166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4565633734532480}
   - component: {fileID: 114729131999992528}
+  - component: {fileID: 114022526811169892}
   m_Layer: 0
   m_Name: Player Controller
   m_TagString: Untagged
@@ -219,7 +221,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1973911984450772}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.934, z: 0}
+  m_LocalPosition: {x: -0.8954921, y: -1.8011876e-18, z: 0.081118286}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4830469276616770}
@@ -424,6 +426,19 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1628831324414968}
   m_Enabled: 1
+--- !u!114 &114022526811169892
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1973911984450772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a157a35344dee047873b73455397bbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PitchMinRange: 0.6
+  PitchMaxRange: 1.5
 --- !u!114 &114023401553347606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -478,32 +493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b611e9d80ae48a4bbc4b0c603d6a5f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114202819013583170
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1601113382709744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: 3e12cee82574b1c45807c4d7f56898a3, type: 2}
---- !u!114 &114304682529776166
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1628831324414968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d37c2cf88f7c59f4c8cf5d3812568143, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 0
-  origin: {fileID: 0}
---- !u!114 &114350996711277604
+--- !u!114 &114143951398143852
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -517,6 +507,42 @@ MonoBehaviour:
   _head: {fileID: 4697811494678632}
   _ears: {fileID: 4353435200548786}
   wireframe: 0
+--- !u!114 &114202819013583170
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1601113382709744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 3e12cee82574b1c45807c4d7f56898a3, type: 2}
+--- !u!114 &114296098665357374
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1601113382709744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 459107f6cad0bb0429da3bfec2df819f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114304682529776166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1628831324414968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d37c2cf88f7c59f4c8cf5d3812568143, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  origin: {fileID: 0}
 --- !u!114 &114395797837513550
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -617,6 +643,8 @@ MonoBehaviour:
   RegenRate: 5
   ExplosiveForce: 20
   ExplosiveRadius: 7
+  DamageSound: {fileID: 8300000, guid: a5c0ebb47fa4a5449a642ba43ed8c2ca, type: 3}
+  TeleportSound: {fileID: 8300000, guid: 2b8369e0f31f73047b2fa61c989d25b1, type: 3}
 --- !u!114 &114790093927986330
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4753582713003558}
   - component: {fileID: 114561827462553958}
   m_Layer: 0
-  m_Name: ob_Tree_Spawn
+  m_Name: obj_Tree_Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
