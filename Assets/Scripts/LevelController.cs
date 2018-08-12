@@ -156,6 +156,7 @@ public class LevelController : MonoBehaviour
 		{
 			SwitchScene(GameOverScene);
 			player.Health = player.MaximumHealth;
+			player.DropInventory();
 
 			PopupMessage msg = new PopupMessage("Game Over", "Need some more space?", 5.0f);
 			PopupController.Main.PushImmediate(msg);

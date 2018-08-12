@@ -162,4 +162,10 @@ public class PlayerController : MonoBehaviour
 		Health--;
 		m_RegenTimer = RegenRate;
 	}
+
+	public void DropInventory()
+	{
+		LeftHand.CurrentItem = null;
+		RightHand.CurrentItem = null;
+	}
 }
