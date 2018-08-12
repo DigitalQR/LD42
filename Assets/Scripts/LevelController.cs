@@ -87,11 +87,9 @@ public class LevelController : MonoBehaviour
 
 
 		// Destroy all items
-		if (InMenuLevel)
-		{
-			foreach (EquipableItemBase item in FindObjectsOfType<EquipableItemBase>())
+		foreach (EquipableItemBase item in FindObjectsOfType<EquipableItemBase>())
+			if(!item.IsCurrentlyEquiped())
 				Destroy(item);
-		}
 	}
 
 	public void SwitchScene(string scene)

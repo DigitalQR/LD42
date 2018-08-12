@@ -7,7 +7,7 @@ using UnityEngine;
 public class EquipableItemBase : MonoBehaviour, IEquipableItem
 {
 	[SerializeField]
-	private Quaternion EquipRotation = Quaternion.AngleAxis(-45.0f, Vector3.left);
+	private Vector3 EquipEulerRotation = new Vector3(45.0f, 0.0f, 0.0f);
 	[SerializeField]
 	private bool DisableCollision = true;
 
@@ -59,7 +59,7 @@ public class EquipableItemBase : MonoBehaviour, IEquipableItem
 		m_AttachedHand = hand;
 
 		transform.parent = hand.transform;
-		transform.localRotation = EquipRotation;
+		transform.localRotation = Quaternion.Euler(EquipEulerRotation);
 		transform.localPosition = Vector3.zero;
 
 		Body.detectCollisions = !DisableCollision;

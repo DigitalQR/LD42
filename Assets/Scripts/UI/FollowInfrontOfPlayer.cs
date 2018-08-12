@@ -16,7 +16,7 @@ public class FollowInfrontOfPlayer : MonoBehaviour
 		if (PlayerController.Main != null)
 		{
 			Transform target = PlayerController.Main.HeadPosition;
-			Vector3 targetLocation = target.position + new Vector3(target.forward.x, 0, target.forward.z) * Distance;
+			Vector3 targetLocation = target.position + new Vector3(target.forward.x, 0.0f, target.forward.z) * Distance;
 
 			transform.position = Vector3.Lerp(transform.position, targetLocation, Snappiness * Time.fixedUnscaledDeltaTime);
 		}

@@ -171,6 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f8d5bb6ac52f2944a142d4295a7262f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EquipRotation: {x: 0.38268346, y: -0, z: -0, w: 0.9238795}
+  EquipEulerRotation: {x: 45, y: 0, z: 0}
   DisableCollision: 0
   AppliedForce: 25
+  VelocityTracker: {fileID: 0}
+  VelocityFactor: 10

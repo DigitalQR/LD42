@@ -7,6 +7,9 @@ using UnityEngine.UI;
 [RequireComponent(typeof(SteamVR_LaserPointer)), RequireComponent(typeof(SteamVR_TrackedController))]
 public class PlayerHand : MonoBehaviour
 {
+	[SerializeField]
+	private GameObject ControllerModel;
+
 	private SteamVR_TrackedController m_Controller;
 	private SteamVR_LaserPointer m_LaserPointer;
 
@@ -52,6 +55,8 @@ public class PlayerHand : MonoBehaviour
 
 			if (m_CurrentItem != null)
 				m_CurrentItem.OnEquip(this);
+
+			ControllerModel.SetActive(m_CurrentItem == null);
 		}
 	}
 	
