@@ -9,7 +9,6 @@ public class HUDController : MonoBehaviour
 	/// </summary>
 	public static HUDController Main { get; private set; }
 	
-
 	void Start ()
 	{
 		if (Main != this)

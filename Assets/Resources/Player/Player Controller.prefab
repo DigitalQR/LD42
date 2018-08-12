@@ -594,7 +594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 071ae68403aa4164a9b987a88fdb287c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HeadObject: {fileID: 1628831324414968}
+  HeadObject: {fileID: 1601113382709744}
   LeftHand: {fileID: 114790093927986330}
   RightHand: {fileID: 114395797837513550}
   JumpThreshold: 0.025
