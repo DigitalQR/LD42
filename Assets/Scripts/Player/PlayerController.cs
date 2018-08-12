@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
 	private void OnMenuClicked(object sender, ClickedEventArgs e)
 	{
-		Debug.Log("Menu");
+		PauseMenuController.Main.Toggle();
 	}
 
 	private void DetectJump()

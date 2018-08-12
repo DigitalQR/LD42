@@ -46,6 +46,16 @@ public class LevelController : MonoBehaviour
 		return false;
 	}
 
+	public bool InMenuLevel
+	{
+		get { return m_ActiveSceneName == null; }
+	}
+
+	public bool IsUIActive
+	{
+		get { return PauseMenuController.Main.IsPaused || InMenuLevel; }
+	}
+
 	/// <summary>
 	/// Spawn a new player or move existing one to spawn point
 	/// </summary>
@@ -75,14 +85,14 @@ public class LevelController : MonoBehaviour
 	public void SwitchScene(string scene)
 	{
 		// Unload old scene
-		if (m_ActiveSceneName == null)
+		if (InMenuLevel)
 		{
 			// Just disabled entry scene (It should never be unloaded)
 			foreach (GameObject obj in m_MainScene.GetRootGameObjects())
 				if(!IsAlwaysActive(obj))
 					obj.SetActive(false);
 		}
-		else if (m_ActiveSceneName != null)
+		else
 			StartCoroutine(UnloadLevel(m_ActiveSceneName));
 
 
@@ -120,5 +130,10 @@ public class LevelController : MonoBehaviour
 			m_ActiveSceneName = sceneName;
 			yield return null;
 		}
+	}
+
+	public void QuitGame()
+	{
+		Application.Quit();
 	}
 }

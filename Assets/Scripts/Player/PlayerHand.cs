@@ -54,6 +54,12 @@ public class PlayerHand : MonoBehaviour
 				m_CurrentItem.OnEquip(this);
 		}
 	}
+	
+
+	private void Update()
+	{
+		m_LaserPointer.pointer.SetActive(LevelController.Main.IsUIActive);
+	}
 
 	private IEquipableItem CurrentPrompt
 	{
@@ -138,19 +144,16 @@ public class PlayerHand : MonoBehaviour
 	{
 		Selectable selectable = e.target.GetComponent<Selectable>();
 
-		if (selectable != null)
+		if (selectable != null && LevelController.Main.IsUIActive)
 		{
-			m_InUI = true;
 			selectable.Select();
-			m_LaserPointer.pointer.SetActive(true);
+			m_InUI = true;
 		}
 	}
 
 	private void OnLaserPointerOut(object sender, PointerEventArgs e)
 	{
-		m_LaserPointer.pointer.SetActive(false);
 		m_InUI = false;
-
 		EventSystem.current.SetSelectedGameObject(null);
 	}
 
