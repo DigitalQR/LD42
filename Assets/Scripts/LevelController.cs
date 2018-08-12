@@ -66,14 +66,15 @@ public class LevelController : MonoBehaviour
 	{
 		// Find spawn location
 		Vector3 spawnPoint = Vector3.zero;
-		foreach (GameObject spawn in GameObject.FindGameObjectsWithTag("Respawn"))
-		{
-			if (spawn.CompareTag("Respawn"))
+		if(!InMenuLevel)
+			foreach (GameObject spawn in GameObject.FindGameObjectsWithTag("Respawn"))
 			{
-				spawnPoint = spawn.transform.position;
-				break;
+				if (spawn.CompareTag("Respawn"))
+				{
+					spawnPoint = spawn.transform.position;
+					break;
+				}
 			}
-		}
 
 		// Spawn in or move player
 		if (PlayerController.Main == null)
@@ -84,6 +85,14 @@ public class LevelController : MonoBehaviour
 		}
 		else
 			PlayerController.Main.transform.position = spawnPoint;
+
+
+		// Destroy all items
+		if (InMenuLevel)
+		{
+			foreach (EquipableItemBase item in FindObjectsOfType<EquipableItemBase>())
+				Destroy(item);
+		}
 	}
 
 	public void SwitchScene(string scene)

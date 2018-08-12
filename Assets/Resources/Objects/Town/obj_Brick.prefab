@@ -259,4 +259,4 @@ MonoBehaviour:
   InitalisationDuration: 3
   Acceleration: 10
   MaxSpeed: 100
-  DistanceCutOff: 4
+  DistanceCutOff: 5.5

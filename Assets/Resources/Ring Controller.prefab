@@ -100,7 +100,7 @@ Transform:
   m_GameObject: {fileID: 1034329184006546}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -1.3, z: 0}
-  m_LocalScale: {x: 25, y: 25.000015, z: 100.00006}
+  m_LocalScale: {x: 1, y: 1, z: 100.00006}
   m_Children: []
   m_Father: {fileID: 4623388230346772}
   m_RootOrder: 1
@@ -113,7 +113,7 @@ Transform:
   m_GameObject: {fileID: 1381272928029760}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -1.3, z: 0}
-  m_LocalScale: {x: 25, y: 25.000015, z: 100.00006}
+  m_LocalScale: {x: 1, y: 1, z: 100.00006}
   m_Children: []
   m_Father: {fileID: 4623388230346772}
   m_RootOrder: 0
@@ -265,7 +265,7 @@ MonoBehaviour:
   RingReducitonRate: 0.5
   ScaleWithRadius: 1
   PassRadius: 2.5
-  NextLevel: None
+  NextLevel: 002
   NonPassedMesh: {fileID: 1381272928029760}
   PassedMesh: {fileID: 1034329184006546}
 --- !u!136 &136547445359069646
@@ -277,7 +277,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 25
+  m_Radius: 1
   m_Height: 80
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

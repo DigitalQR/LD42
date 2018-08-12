@@ -389,9 +389,9 @@ MonoBehaviour:
   Target: {fileID: 0}
   InitialisingOffset: {x: 0, y: 3, z: 0}
   InitalisationDuration: 3
-  Acceleration: 5
-  MaxSpeed: 50
-  DistanceCutOff: 4
+  Acceleration: 12.5
+  MaxSpeed: 15
+  DistanceCutOff: 2.5
 --- !u!136 &136147999465566076
 CapsuleCollider:
   m_ObjectHideFlags: 1

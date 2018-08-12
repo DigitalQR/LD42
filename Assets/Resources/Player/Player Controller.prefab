@@ -109,9 +109,9 @@ GameObject:
   - component: {fileID: 20277566234096628}
   - component: {fileID: 124689783179636890}
   - component: {fileID: 114202819013583170}
-  - component: {fileID: 135301071047555362}
   - component: {fileID: 114081298412837452}
-  - component: {fileID: 114185232633535152}
+  - component: {fileID: 136256772175763470}
+  - component: {fileID: 114350996711277604}
   m_Layer: 0
   m_Name: Camera (eye)
   m_TagString: MainCamera
@@ -219,7 +219,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1973911984450772}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.934, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4830469276616770}
@@ -305,7 +305,7 @@ Camera:
   m_GameObject: {fileID: 1601113382709744}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -478,20 +478,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b611e9d80ae48a4bbc4b0c603d6a5f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114185232633535152
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1601113382709744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bca9ccf900ccc84c887d783321d27e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _head: {fileID: 4697811494678632}
-  _ears: {fileID: 4353435200548786}
-  wireframe: 0
 --- !u!114 &114202819013583170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -517,6 +503,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   origin: {fileID: 0}
+--- !u!114 &114350996711277604
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1601113382709744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bca9ccf900ccc84c887d783321d27e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _head: {fileID: 4697811494678632}
+  _ears: {fileID: 4353435200548786}
+  wireframe: 0
 --- !u!114 &114395797837513550
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -611,7 +611,7 @@ MonoBehaviour:
   LeftHand: {fileID: 114790093927986330}
   RightHand: {fileID: 114395797837513550}
   JumpThreshold: 0.025
-  JumpDurationThreshold: 0.5
+  JumpDurationThreshold: 0.75
   MaxHealth: 6
   RegenRate: 7
   ExplosiveForce: 20
@@ -706,8 +706,8 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &135301071047555362
-SphereCollider:
+--- !u!136 &136256772175763470
+CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -715,6 +715,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
   m_Radius: 0.25
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.5, z: 0}

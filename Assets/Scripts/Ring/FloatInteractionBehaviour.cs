@@ -40,6 +40,8 @@ public class FloatInteractionBehaviour : MonoBehaviour, IRingInteractableBehavio
 		m_Body = GetComponent<Rigidbody>();
 		m_Body.Sleep();
 
+		m_Body.isKinematic = true;
+
 		m_InitialisationTarget = transform.position + InitialisingOffset;
 		Target = PlayerController.Main.HeadPosition;
 	}
@@ -95,5 +97,7 @@ public class FloatInteractionBehaviour : MonoBehaviour, IRingInteractableBehavio
 	{
 		m_IsTrackingTarget = true;
 		m_InteractionTimer = 0.0f;
+
+		m_Body.isKinematic = false;
 	}
 }

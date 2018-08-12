@@ -27,20 +27,21 @@ public class RingController : MonoBehaviour
 
 	private bool m_IsActive = true;
 	private float m_Radius;
-	private Vector3 m_StartScale;
 
 
 
 	void Start()
 	{
 		m_Radius = StartRadius;
-		m_StartScale = transform.localScale;
 
 		LevelController.Main.SpawnPlayer();
 		PlayerController.Main.PlayerJumped += OnPlayerJump;
 
 		NonPassedMesh.SetActive(true);
 		PassedMesh.SetActive(true);
+
+		if (ScaleWithRadius)
+			transform.localScale = new Vector3(m_Radius, 80.0f, m_Radius);
 	}
 
 	void OnDestroy()
@@ -80,7 +81,7 @@ public class RingController : MonoBehaviour
 			PassedMesh.SetActive(HasPassed);
 
 			if (ScaleWithRadius)
-				transform.localScale = new Vector3(m_StartScale.x * NormalisedRadius, m_StartScale.y, m_StartScale.z * NormalisedRadius);
+				transform.localScale = new Vector3(m_Radius, 80.0f, m_Radius);
 		}
 	}
 
