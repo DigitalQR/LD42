@@ -33,7 +33,6 @@ public class ImpactEquipable : EquipableItemBase
 		Vector3 currentPostion = VelocityTracker.position;
 		m_Velocity = (currentPostion - m_LastPosition) / Time.deltaTime;
 		m_LastPosition = currentPostion;
-		Debug.Log(m_Velocity);
 	}
 
 	public override void OnDrop()

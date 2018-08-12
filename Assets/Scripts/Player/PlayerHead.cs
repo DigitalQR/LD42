@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHead : MonoBehaviour
+public class PlayerHead : MonoBehaviour, IRingInteractableBehaviour
 {
 	private PlayerController m_Player;
 	
@@ -10,6 +11,12 @@ public class PlayerHead : MonoBehaviour
 	{
 		get { return m_Player; }
 		set { m_Player = value; }
+	}
+
+	public void OnRingInteraction()
+	{
+		// Kill player when they leave the ring
+		Player.Health = 0;
 	}
 
 	private void OnCollisionEnter(Collision collision)

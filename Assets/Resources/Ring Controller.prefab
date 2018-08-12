@@ -294,7 +294,7 @@ MonoBehaviour:
   RingReducitonRate: 0.5
   ScaleWithRadius: 1
   PassRadius: 2.5
-  NextLevel: 002
+  NextLevel: Random
   NonPassedMesh: {fileID: 1381272928029760}
   PassedMesh: {fileID: 1034329184006546}
 --- !u!136 &136547445359069646

@@ -34,8 +34,8 @@ public class RingController : MonoBehaviour
 	void Start()
 	{
 		m_Radius = StartRadius;
-
-		LevelController.Main.SpawnPlayer();
+		
+		GameController.Main.OnLevelSwitch();
 		PlayerController.Main.PlayerJumped += OnPlayerJump;
 
 		NonPassedMesh.SetActive(true);

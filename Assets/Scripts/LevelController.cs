@@ -11,12 +11,10 @@ public class LevelController : MonoBehaviour
 	public static LevelController Main { get; private set; }
 
 	[SerializeField]
-	private PlayerController PlayerPrefab;
-	[SerializeField]
 	private string[] AlwaysActiveObjectNames;
 
 	[SerializeField]
-	private string GameOverScene = "Entry";
+	private string[] RandomLevels = new string[1];
 
 	private Scene m_MainScene;
 	private string m_ActiveSceneName;
@@ -24,6 +22,8 @@ public class LevelController : MonoBehaviour
 
 	void Start ()
 	{
+		Random.InitState((int)System.DateTime.Now.Ticks);
+
 		if (Main != this)
 		{
 			if (Main != null)
@@ -37,7 +37,7 @@ public class LevelController : MonoBehaviour
 
 		DontDestroyOnLoad(gameObject);
 		m_MainScene = SceneManager.GetSceneAt(0);
-		SpawnPlayer();
+		GameController.Main.OnLevelSwitch();
 	}
 
 	private bool IsAlwaysActive(GameObject obj)
@@ -47,7 +47,7 @@ public class LevelController : MonoBehaviour
 				return true;
 		return false;
 	}
-
+	
 	public bool InMenuLevel
 	{
 		get { return m_ActiveSceneName == null; }
@@ -58,42 +58,29 @@ public class LevelController : MonoBehaviour
 		get { return PauseMenuController.Main.IsPaused || InMenuLevel; }
 	}
 
-	/// <summary>
-	/// Spawn a new player or move existing one to spawn point
-	/// </summary>
-	public void SpawnPlayer()
-	{
-		// Find spawn location
-		Vector3 spawnPoint = Vector3.zero;
-		if(!InMenuLevel)
-			foreach (GameObject spawn in GameObject.FindGameObjectsWithTag("Respawn"))
-			{
-				if (spawn.CompareTag("Respawn"))
-				{
-					spawnPoint = spawn.transform.position;
-					break;
-				}
-			}
-
-		// Spawn in or move player
-		if (PlayerController.Main == null)
-		{
-			PlayerController player = Instantiate(PlayerPrefab, spawnPoint, Quaternion.identity);
-			player.PlayerHealthChange += OnPlayerHealthChange;
-			DontDestroyOnLoad(player.gameObject);
-		}
-		else
-			PlayerController.Main.transform.position = spawnPoint;
-
-
-		// Destroy all items
-		foreach (EquipableItemBase item in FindObjectsOfType<EquipableItemBase>())
-			if(!item.IsCurrentlyEquiped())
-				Destroy(item);
-	}
-
 	public void SwitchScene(string scene)
 	{
+		// Find real level name (if Random given)
+		if (scene == "Random")
+		{
+			if (RandomLevels.Length == 1)
+				scene = RandomLevels[0];
+			else
+			{
+				int startIndex = Random.Range(0, RandomLevels.Length);
+				for (int n = 0; n < RandomLevels.Length; ++n)
+				{
+					int i = (startIndex + n) % RandomLevels.Length;
+					if (RandomLevels[i] != m_ActiveSceneName)
+					{
+						scene = RandomLevels[i];
+						break;
+					}
+				}
+			}
+		}
+
+
 		// Unload old scene
 		if (InMenuLevel)
 		{
@@ -115,7 +102,7 @@ public class LevelController : MonoBehaviour
 					obj.SetActive(true);
 
 			m_ActiveSceneName = null;
-			SpawnPlayer();
+			GameController.Main.OnLevelSwitch();
 		}
 		else if (scene != null)
 			StartCoroutine(LoadLevel(scene));
@@ -145,19 +132,5 @@ public class LevelController : MonoBehaviour
 	public void QuitGame()
 	{
 		Application.Quit();
-	}
-
-	private void OnPlayerHealthChange(object sender, System.EventArgs e)
-	{
-		PlayerController player = sender as PlayerController;
-		if (player.Health == 0)
-		{
-			SwitchScene(GameOverScene);
-			player.Health = player.MaximumHealth;
-			player.DropInventory();
-
-			PopupMessage msg = new PopupMessage("Game Over", "Need some more space?", 5.0f);
-			PopupController.Main.PushImmediate(msg);
-		}
 	}
 }
