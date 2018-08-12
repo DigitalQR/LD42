@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
 		m_PreviousHeadLocation = HeadPosition.position;
 		m_SoundEmitter = GetComponent<SoundEmitter>();
 	}
-	
+
 	public Transform HeadPosition
 	{
 		get { return Head.transform; }
@@ -121,6 +121,14 @@ public class PlayerController : MonoBehaviour
 
 	void Update ()
 	{
+		// Detect death by ring
+		RingController ringController = FindObjectOfType<RingController>();
+		if (ringController != null && ringController.OutsideRange(HeadPosition.position))
+		{
+			Health = 0;
+			return;
+		}
+
 		// Regen health
 		if (m_Health < MaxHealth)
 		{
@@ -131,7 +139,7 @@ public class PlayerController : MonoBehaviour
 				m_RegenTimer = RegenRate;
 			}
 		}
-
+		
 		DetectJump();
 	}
 

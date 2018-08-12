@@ -124,5 +124,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 300
-  LifeLength: 5
-  AppliedForce: 15
+  LifeLength: 2
+  AppliedForce: 50

@@ -111,8 +111,7 @@ GameObject:
   - component: {fileID: 114202819013583170}
   - component: {fileID: 114081298412837452}
   - component: {fileID: 136256772175763470}
-  - component: {fileID: 114143951398143852}
-  - component: {fileID: 114296098665357374}
+  - component: {fileID: 114955842731350236}
   m_Layer: 0
   m_Name: Camera (eye)
   m_TagString: MainCamera
@@ -493,20 +492,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b611e9d80ae48a4bbc4b0c603d6a5f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114143951398143852
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1601113382709744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bca9ccf900ccc84c887d783321d27e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _head: {fileID: 4697811494678632}
-  _ears: {fileID: 4353435200548786}
-  wireframe: 0
 --- !u!114 &114202819013583170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -519,17 +504,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: 3e12cee82574b1c45807c4d7f56898a3, type: 2}
---- !u!114 &114296098665357374
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1601113382709744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 459107f6cad0bb0429da3bfec2df819f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114304682529776166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -675,6 +649,20 @@ MonoBehaviour:
   padPressed: 0
   padTouched: 0
   gripped: 0
+--- !u!114 &114955842731350236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1601113382709744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bca9ccf900ccc84c887d783321d27e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _head: {fileID: 4697811494678632}
+  _ears: {fileID: 4353435200548786}
+  wireframe: 0
 --- !u!114 &114994637411596308
 MonoBehaviour:
   m_ObjectHideFlags: 1

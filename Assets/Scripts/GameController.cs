@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
 	private float RandomSpawnIncreaseRate = 0.1f;
 
 	private bool m_IsActive = false;
+	private float m_SurvivalTimer;
 	private float m_RandomSpawnChance;
 
 
@@ -42,7 +43,15 @@ public class GameController : MonoBehaviour
 	{
 		get { return m_RandomSpawnChance; }
 	}
-	
+
+	void Update()
+	{
+		if (m_IsActive)
+		{
+			m_SurvivalTimer += Time.deltaTime;
+		}	
+	}
+
 	/// <summary>
 	/// Spawn a new player or move existing one to spawn point
 	/// </summary>
@@ -104,6 +113,7 @@ public class GameController : MonoBehaviour
 	private void OnGameStart()
 	{
 		m_IsActive = true;
+		m_SurvivalTimer = 0.0f;
 		m_RandomSpawnChance = RandomSpawnStartValue;
 	}
 
@@ -117,7 +127,13 @@ public class GameController : MonoBehaviour
 		m_IsActive = false;
 		LevelController.Main.SwitchScene(GameOverScene);
 
-		PopupMessage msg = new PopupMessage("Game Over", "Need some more space?", 5.0f);
+		int totalSeconds = (int)m_SurvivalTimer;
+		int minutes = totalSeconds / 60;
+		int seconds = totalSeconds % 60;
+		string timeStamp = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+
+
+		PopupMessage msg = new PopupMessage("Game Over", "Need some more space?\nYou survived for: " + timeStamp, 10.0f);
 		PopupController.Main.PushImmediate(msg);
 	}
 }

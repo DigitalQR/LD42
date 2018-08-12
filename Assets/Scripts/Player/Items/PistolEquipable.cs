@@ -5,11 +5,19 @@ using UnityEngine;
 
 public class PistolEquipable : EquipableItemBase
 {
+	[Header("Gun Settings")]
 	[SerializeField]
 	private Transform MuzzleTransform;
 
 	[SerializeField]
-	private GameObject ProjectileType;
+	private Projectile ProjectileType;
+
+	[Header("Sound")]
+	[SerializeField]
+	private AudioClip ShootSound;
+
+	[SerializeField]
+	private AudioClip HitSound;
 
 	protected override void Start()
 	{
@@ -19,8 +27,15 @@ public class PistolEquipable : EquipableItemBase
 	public override void OnPrimaryButton(bool isPressed)
 	{
 		if (isPressed)
-			Instantiate(ProjectileType, MuzzleTransform.position, transform.rotation, null);
+		{
+			Projectile projectile = Instantiate(ProjectileType, MuzzleTransform.position, transform.rotation, null);
+			projectile.Gun = this;
+			SoundSource.PlaySound(ShootSound);
+		}
+	}
 
-		Debug.Log("Fire " + isPressed);
+	public void OnShotHit()
+	{
+		SoundSource.PlaySound(HitSound);
 	}
 }

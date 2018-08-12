@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+	private PistolEquipable m_Gun;
+
 	[SerializeField]
 	private float Speed = 10.0f;
 	[SerializeField]
@@ -14,6 +16,12 @@ public class Projectile : MonoBehaviour
 
 	private float m_LifeTimer = 0.0f;
 	
+
+	public PistolEquipable Gun
+	{
+		get { return m_Gun; }
+		set { m_Gun = value; }
+	}
 
 	void Update()
 	{
@@ -40,7 +48,8 @@ public class Projectile : MonoBehaviour
 			Rigidbody body = hit.collider.GetComponent<Rigidbody>();
 			if (body != null)
 				body.velocity = transform.forward * AppliedForce;
-			
+
+			Gun.OnShotHit();
 			return true;
 		}
 		else

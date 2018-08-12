@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -127,5 +128,13 @@ public class RingController : MonoBehaviour
 			PlayerController player = sender as PlayerController;
 			player.SoundSource.PlaySound(player.TeleportSoundEffect);
 		}
+	}
+
+	public bool OutsideRange(Vector3 position)
+	{
+		Vector3 diff = position - transform.position;
+		diff.y = 0.0f;
+
+		return (diff.sqrMagnitude >= Radius * Radius);			
 	}
 }

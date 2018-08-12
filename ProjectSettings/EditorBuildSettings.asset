@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Levels/Random_001.unity
     guid: 652bd0bd6f40b534eacd9d33ab4acc9f
   - enabled: 1
+    path: Assets/Levels/Random_001b.unity
+    guid: db4e1bc9d64ea054fb9754762bdaa8ad
+  - enabled: 1
     path: Assets/Levels/Random_002.unity
     guid: ea780e8aa36de8145949bc47c250d52e
   - enabled: 1

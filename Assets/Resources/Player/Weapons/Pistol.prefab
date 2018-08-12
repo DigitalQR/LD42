@@ -207,8 +207,10 @@ MonoBehaviour:
   EquipSound: {fileID: 8300000, guid: 99fff9a0ac6ce59448e32a9dadd24ae9, type: 3}
   DropSound: {fileID: 0}
   MuzzleTransform: {fileID: 4140749742212520}
-  ProjectileType: {fileID: 1740574021709766, guid: b1b2b2bb64310954eb099c0254a0e69d,
+  ProjectileType: {fileID: 114145239126634280, guid: b1b2b2bb64310954eb099c0254a0e69d,
     type: 2}
+  ShootSound: {fileID: 8300000, guid: 99fff9a0ac6ce59448e32a9dadd24ae9, type: 3}
+  HitSound: {fileID: 8300000, guid: 30c512b4e29afd743a50854feaed9fdb, type: 3}
 --- !u!114 &114739436515976616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -220,5 +222,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a157a35344dee047873b73455397bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PitchMinRange: 0.6
-  PitchMaxRange: 1.5
+  PitchMinRange: 1.5
+  PitchMaxRange: 2
